@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+	<% include navbar %>
+  <% include top %>
+  <% include download %>
+  <% include features %>
+  <% include cta %>
+  <% include contact %>
+	<% include footer %>
+
+	<!-- /container -->
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+    
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+  function load_data(lg){
+      //var parameters = { search: $(this).val() };
+      var parameters = { lang: lg };
+       $.get( '/info', parameters, function(data) {
+         $.each(data[0], function(k, v) {
+          $('#'+k).html(v);
+         });
+         $('#'+lg).addClass("active");
+         $('#'+(lg!='en'?'en':'ru')).removeClass("active");
+       });  
+  }
+		$(document).ready(function() {
+        load_data('en');
+		});
+	</script>    
+</body>
+</html>
